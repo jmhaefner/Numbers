@@ -69,6 +69,15 @@ def print_prime_factorization(n):
 		facts_string = facts_string + '(' + str(fact) + '^' + str(ord) + ')'
 	return facts_string
 
+# Gives all primes up to (not including) n
+
+def first_n_primes(n):
+	all_primes = []
+	for i in range(n):
+		if prime(i):
+			all_primes.append(i)
+	return all_primes
+
 # Checks if the number is a perfect square
 
 def is_square(n):
@@ -89,3 +98,6 @@ for i in range(101):
 	print('Is perfect square?')
 	print(is_square(i))
 	print('')
+
+print('Primes up to 100:')
+print(first_n_primes(100))
