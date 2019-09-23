@@ -88,6 +88,17 @@ def is_square(n):
 			not_square = True
 	return (not not_square) 
 
+# Gives decompositions of n as a sum of two primes
+
+def Goldbach_decompositions(n):
+	candidates = first_n_primes(n)
+	decompositions = []
+	for i in range(len(candidates)):
+		for j in range(i+1,len(candidates)):
+			if candidates[i] + candidates[j] == n:
+				decompositions.append([candidates[i], candidates[j]])
+	return decompositions 
+
 for i in range(101):
 	print('Integer: '+str(i))
 	print('Factors: '+str(factorize(i)))
@@ -97,7 +108,10 @@ for i in range(101):
 	print(print_prime_factorization(i))
 	print('Is perfect square?')
 	print(is_square(i))
+	print('Goldbach decompositions:')
+	print(Goldbach_decompositions(i))
 	print('')
 
 print('Primes up to 100:')
 print(first_n_primes(100))
+
