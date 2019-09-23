@@ -35,7 +35,7 @@ def prime(n):
 
 # Returns the highest k such that m^k | n
 
-def order(m, n):
+def find_order(m, n):
 	k = 0
 	while divides(m**(k+1), n):
 		k += 1
@@ -43,10 +43,10 @@ def order(m, n):
 
 # Returns the orders of the given factors
 
-def orders(f, n):
+def find_orders(f, n):
 	ords = []
 	for factor in f:
-		ords.append(order(factor, n))
+		ords.append(find_order(factor, n))
 	return ords
 
 # Returns the prime factorization
@@ -57,7 +57,7 @@ def prime_factorize(n):
 	for f in facts:
 		if prime(f):
 			prime_facts.append(f)
-	pf_orders = orders(prime_facts, n)
+	pf_orders = find_orders(prime_facts, n)
 	return prime_facts, pf_orders
 
 # Prints the prime factorization
@@ -78,13 +78,25 @@ def first_n_primes(n):
 			all_primes.append(i)
 	return all_primes
 
+# Checks if the number is a perfect square
+
+def is_square(n):
+	factors, orders = prime_factorize(n)
+	not_square = False
+	for order in orders:
+		if not divides(2, order):
+			not_square = True
+	return (not not_square) 
+
 for i in range(101):
 	print('Integer: '+str(i))
 	print('Factors: '+str(factorize(i)))
-	print('Orders:  '+str(orders(factorize(i), i)))
+	print('Orders:  '+str(find_orders(factorize(i), i)))
 	print('Prime?:  '+str(prime(i)))
 	print('Prime factorization:')
 	print(print_prime_factorization(i))
+	print('Is perfect square?')
+	print(is_square(i))
 	print('')
 
 print('Primes up to 100:')
