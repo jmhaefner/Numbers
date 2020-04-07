@@ -97,6 +97,9 @@ def Goldbach_decompositions(n):
 		for j in range(i+1,len(candidates)):
 			if candidates[i] + candidates[j] == n:
 				decompositions.append([candidates[i], candidates[j]])
+                                if n > 1000:
+                                    print('Got one! ', decompositions[-1])
+                print('Finished checking for', candidates[i])
 	return decompositions 
 
 for i in range(101):
@@ -114,4 +117,3 @@ for i in range(101):
 
 print('Primes up to 100:')
 print(first_n_primes(100))
-
